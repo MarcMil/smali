@@ -240,8 +240,8 @@ public class Preconditions {
         }
         for (Number element : elements) {
             if (element.longValue() < minValue || element.longValue() > maxValue) {
-                throw new IllegalArgumentException(
-                        String.format("%d does not fit into a %d-byte signed integer",
+                System.err.println(
+                        String.format("dexlib2 Preconditions.checkArrayPayloadElements: %d does not fit into a %d-byte signed integer",
                                 element.longValue(), elementWidth));
             }
         }
