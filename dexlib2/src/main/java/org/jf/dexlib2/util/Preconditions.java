@@ -224,7 +224,7 @@ public class Preconditions {
         long minValue;
         if (elementWidth == 2) {
             //Could be a short or character.
-            //Characters are signed, Shorts are not.
+            //Characters are unsigned, Shorts are signed.
             //Short.MAX_VALUE = 32767
             //Short.MIN_VALUE = -32768
             //(int) Character.MAX_VALUE = 65535
@@ -240,8 +240,8 @@ public class Preconditions {
         }
         for (Number element : elements) {
             if (element.longValue() < minValue || element.longValue() > maxValue) {
-                throw new IllegalArgumentException(
-                        String.format("%d does not fit into a %d-byte signed integer",
+                System.err.println(
+                        String.format("dexlib2 Preconditions.checkArrayPayloadElements: %d does not fit into a %d-byte signed integer",
                                 element.longValue(), elementWidth));
             }
         }
